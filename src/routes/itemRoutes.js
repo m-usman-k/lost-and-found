@@ -5,10 +5,13 @@ const {
   createItem,
   updateItem,
   deleteItem,
+  getMyItems,
 } = require('../controllers/itemController');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();
+
+router.get('/me', protect, getMyItems);
 
 router.route('/')
   .get(getItems)

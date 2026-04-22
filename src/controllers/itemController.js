@@ -1,10 +1,59 @@
 const Item = require('../models/Item');
 
-// @desc    Get all items
+// @desc    Get all items (with filters)
 // @route   GET /api/items
 exports.getItems = async (req, res, next) => {
   try {
-    const items = await Item.find().populate('user', 'name email');
+    let query;
+    const reqQuery = { ...req.query };
+    
+    // Fields to exclude from direct matching
+    const removeFields = ['select', 'sort', 'page', 'limit', 'search'];
+    removeFields.forEach(param => delete reqQuery[param]);
+
+    // Create query string for advanced operators ($gt, $gte, etc)
+    let queryStr = JSON.stringify(reqQuery);
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+
+    // Base query
+    query = Item.find(JSON.parse(queryStr));
+
+    // Keyword Search
+    if (req.query.search) {
+      query = query.find({
+        $or: [
+          { title: { $regex: req.query.search, $options: 'i' } },
+          { location: { $regex: req.query.search, $options: 'i' } }
+        ]
+      });
+    }
+
+    // Select Fields
+    if (req.query.select) {
+      const fields = req.query.select.split(',').join(' ');
+      query = query.select(fields);
+    }
+
+    // Sort
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort('-createdAt');
+    }
+
+    const items = await query.populate('user', 'name email');
+    res.status(200).json({ success: true, count: items.length, data: items });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Get logged in user items
+// @route   GET /api/items/me
+exports.getMyItems = async (req, res, next) => {
+  try {
+    const items = await Item.find({ user: req.user.id });
     res.status(200).json({ success: true, count: items.length, data: items });
   } catch (error) {
     next(error);
