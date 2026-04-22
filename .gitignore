@@ -8,6 +8,7 @@ package-lock.json
 # Lab Documents & Reports
 *.docx
 docs/
+images/
 
 # Editor files
 .vscode/
