@@ -25,6 +25,8 @@ A RESTful API for managing lost and found items on campus. Built with Express.js
 ### Authentication
 - POST /api/auth/register - Register user
 - POST /api/auth/login - Login user
+- GET /api/auth/me - Get current user profile (Protected)
+- PUT /api/auth/updatedetails - Update user name/email (Protected)
 
 ### Items
 - GET /api/items - Retrieve all items (supports search, sort, filter)
@@ -37,3 +39,6 @@ A RESTful API for managing lost and found items on campus. Built with Express.js
 - POST /api/claims - Submit ownership proof for a found item
 - GET /api/claims - View all claims (Admin only)
 - PUT /api/claims/:id - Update claim status (Pending/Approved/Rejected)
+
+### Statistics
+- GET /api/stats - Get system-wide statistics (Protected)
