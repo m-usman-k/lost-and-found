@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+
+# Lab Documents & Reports
+*.docx
+Midterm_Lab_Submission.html
+temp_doc_extracted/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.log
