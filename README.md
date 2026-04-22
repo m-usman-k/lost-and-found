@@ -18,12 +18,22 @@ A RESTful API for managing lost and found items on campus. Built with Express.js
 ## Setup Instructions
 1. Install dependencies: `npm install`
 2. Configure `.env` with `MONGODB_URI` and `JWT_SECRET`.
-3. Start the application: `npm run dev` (or `node src/app.js`)
+3. Development mode: `npm run dev`
+4. Production mode: `npm start`
 
 ## API Endpoints
+### Authentication
 - POST /api/auth/register - Register user
 - POST /api/auth/login - Login user
-- GET /api/items - Retrieve all items
+
+### Items
+- GET /api/items - Retrieve all items (supports search, sort, filter)
+- GET /api/items/me - Get items belonging to the logged-in user
 - POST /api/items - Create new item (Protected)
 - PUT /api/items/:id - Update item (Protected/Owner)
 - DELETE /api/items/:id - Delete item (Protected/Owner)
+
+### Claims
+- POST /api/claims - Submit ownership proof for a found item
+- GET /api/claims - View all claims (Admin only)
+- PUT /api/claims/:id - Update claim status (Pending/Approved/Rejected)

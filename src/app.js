@@ -16,6 +16,7 @@ app.use(cors());
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/items', require('./routes/itemRoutes'));
+app.use('/api/claims', require('./routes/claimRoutes'));
 
 // Root route
 app.get('/', (req, res) => {
