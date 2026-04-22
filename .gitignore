@@ -7,10 +7,10 @@ package-lock.json
 
 # Lab Documents & Reports
 *.docx
-Midterm_Lab_Submission.html
+docs/
 
 # Editor files
 .vscode/
 .idea/
-*.swp
+*.swp  
 *.log
