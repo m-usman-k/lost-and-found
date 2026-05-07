@@ -23,22 +23,28 @@ A RESTful API for managing lost and found items on campus. Built with Express.js
 
 ## API Endpoints
 ### Authentication
-- POST /api/auth/register - Register user
-- POST /api/auth/login - Login user
+- POST /api/auth/register - Register user  
+  Body: `{ name: string, email: string, password: string, role?: string }`
+- POST /api/auth/login - Login user  
+  Body: `{ email: string, password: string }`
 - GET /api/auth/me - Get current user profile (Protected)
-- PUT /api/auth/updatedetails - Update user name/email (Protected)
+- PUT /api/auth/updatedetails - Update user name/email (Protected)  
+  Body: `{ name?: string, email?: string }`
 
 ### Items
 - GET /api/items - Retrieve all items (supports search, sort, filter)
 - GET /api/items/me - Get items belonging to the logged-in user
-- POST /api/items - Create new item (Protected)
+- POST /api/items - Create new item (Protected)  
+  Body: `{ title: string, description: string, category: string (Electronics/Personal Effects/Documents/Other), type: string (Lost/Found), location: string }`
 - PUT /api/items/:id - Update item (Protected/Owner)
 - DELETE /api/items/:id - Delete item (Protected/Owner)
 
 ### Claims
-- POST /api/claims - Submit ownership proof for a found item
+- POST /api/claims - Submit ownership proof for a found item  
+  Body: `{ itemId: string, description: string }`
 - GET /api/claims - View all claims (Admin only)
-- PUT /api/claims/:id - Update claim status (Pending/Approved/Rejected)
+- PUT /api/claims/:id - Update claim status (Pending/Approved/Rejected)  
+  Body: `{ status: string (Pending/Approved/Rejected) }`
 
 ### Statistics
 - GET /api/stats - Get system-wide statistics (Protected)
