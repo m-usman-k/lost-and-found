@@ -6,7 +6,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/app.js",
     "dev": "cross-env NODE_ENV=development nodemon src/app.js",
-    "seed": "node src/seeder.js"
+    "seed": "node src/seeder.js",
+    "demo": "node docs/demo_server.js",
+    "docs:generate": "python docs/generate_submission_doc.py"
   },
   "keywords": [],
   "author": "",

@@ -5,9 +5,10 @@ package-lock.json
 # Environment variables
 .env
 
-# Lab Documents & Reports
-*.docx
-docs/
+# Lab submission Word file (regenerate with python docs/build_submission.py)
+docs/*.docx
+.claude/
+
 images/
 
 # Frontend build output

@@ -1,7 +1,6 @@
 if (typeof crypto === 'undefined') global.crypto = require('crypto').webcrypto;
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const bcrypt = require('bcryptjs');
 
 // Load models
 const User = require('./models/User');
@@ -25,28 +24,26 @@ const seedData = async () => {
 
     console.log('Data Cleared...');
 
-    // Hash password
-    const salt = await bcrypt.genSalt(10);
-    const password = await bcrypt.hash('password123', salt);
+    const seedPassword = 'password123';
 
-    // Create Users
+    // Create Users (plain password; User model pre-save hook hashes it)
     const users = await User.create([
       {
         name: 'Muhammad Usman',
         email: 'usman@example.com',
-        password: password,
+        password: seedPassword,
         role: 'admin'
       },
       {
         name: 'M. Hassam Raza',
         email: 'hassam@example.com',
-        password: password,
+        password: seedPassword,
         role: 'user'
       },
       {
         name: 'Test Student',
         email: 'test@example.com',
-        password: password,
+        password: seedPassword,
         role: 'user'
       }
     ]);

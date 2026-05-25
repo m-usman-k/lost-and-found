@@ -1,25 +1,32 @@
-# Lost and Found System
+# Campus Lost and Found
 
-A RESTful API for managing lost and found items on campus. Built with Express.js and MongoDB.
+MERN stack application for reporting and recovering lost items on campus. Express and MongoDB power the REST API; React (Vite) provides the single-page front end.
 
 ## Features
-- User registration and login with JWT authentication.
-- Role-based authorization for administrative tasks.
-- CRUD operations for reporting and tracking items.
-- Item categorization and location tagging.
-- Global error handling and data validation.
+- User registration and login with JWT authentication
+- Roles: regular user and admin
+- CRUD for lost and found items with search and filters
+- Ownership claims on found items
+- Comments on item posts
+- Admin claims review and statistics dashboard
 
-## Technical Details
-- Backend Framework: Express.js
-- Database: MongoDB (Mongoose)
-- Security: JWT, Bcryptjs
-- Configuration: Dotenv
+## Setup
+1. `npm install` (repo root) and `npm install` in `frontend/`
+2. Copy `.env.example` to `.env` and set `MONGODB_URI` and `JWT_SECRET`
+3. Seed sample data: `npm run seed`
+4. API: `npm run dev` (port 5000)
+5. Client: `cd frontend && npm run dev` (port 3000, proxies `/api` to the API)
 
-## Setup Instructions
-1. Install dependencies: `npm install`
-2. Configure `.env` with `MONGODB_URI` and `JWT_SECRET`.
-3. Development mode: `npm run dev`
-4. Production mode: `npm start`
+Demo logins after seeding: `usman@example.com` / `password123` (admin), `hassam@example.com` / `password123` (user).
+
+## Lab document
+From the repo root, with Python 3 and Playwright installed (`pip install python-docx playwright requests` then `python -m playwright install chromium`):
+
+```
+python docs/build_submission.py
+```
+
+This seeds dummy data into MongoDB (local instance on port 27017), captures UI screenshots, and writes `docs/AWT_Lab_Terminal_MERN_Submission.docx`.
 
 ## API Endpoints
 ### Authentication
