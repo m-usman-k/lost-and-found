@@ -19,14 +19,6 @@ MERN stack application for reporting and recovering lost items on campus. Expres
 
 Demo logins after seeding: `usman@example.com` / `password123` (admin), `hassam@example.com` / `password123` (user).
 
-## Lab document
-From the repo root, with Python 3 and Playwright installed (`pip install python-docx playwright requests` then `python -m playwright install chromium`):
-
-```
-python docs/build_submission.py
-```
-
-This seeds dummy data into MongoDB (local instance on port 27017), captures UI screenshots, and writes `docs/AWT_Lab_Terminal_MERN_Submission.docx`.
 
 ## API Endpoints
 ### Authentication
