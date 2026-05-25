@@ -44,6 +44,19 @@ exports.getClaims = async (req, res, next) => {
   }
 };
 
+// @desc    Get claims submitted by the logged-in user
+// @route   GET /api/claims/me
+exports.getMyClaims = async (req, res, next) => {
+  try {
+    const claims = await Claim.find({ user: req.user.id })
+      .populate('item', 'title category type location status')
+      .sort('-createdAt');
+    res.status(200).json({ success: true, count: claims.length, data: claims });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Update claim status (Only the person who found the item or Admin)
 // @route   PUT /api/claims/:id
 exports.updateClaimStatus = async (req, res, next) => {

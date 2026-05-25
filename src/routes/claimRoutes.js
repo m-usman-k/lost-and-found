@@ -1,10 +1,12 @@
 const express = require('express');
-const { submitClaim, getClaims, updateClaimStatus } = require('../controllers/claimController');
+const { submitClaim, getClaims, getMyClaims, updateClaimStatus } = require('../controllers/claimController');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();
 
 router.use(protect); // All claim routes require authentication
+
+router.route('/me').get(getMyClaims);
 
 router.route('/')
   .post(submitClaim)

@@ -1,3 +1,4 @@
+if (typeof crypto === 'undefined') global.crypto = require('crypto').webcrypto;
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -16,6 +17,8 @@ app.use(cors());
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/items', require('./routes/itemRoutes'));
+app.use('/api/items/:itemId/comments', require('./routes/commentRoutes'));
+app.use('/api/comments', require('./routes/deleteCommentRoute'));
 app.use('/api/claims', require('./routes/claimRoutes'));
 app.use('/api/stats', require('./routes/statsRoutes'));
 

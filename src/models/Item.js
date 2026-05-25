@@ -30,6 +30,11 @@ const itemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  status: {
+    type: String,
+    enum: ['Active', 'Resolved'],
+    default: 'Active',
+  },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',

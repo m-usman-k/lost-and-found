@@ -10,8 +10,11 @@ package-lock.json
 docs/
 images/
 
+# Frontend build output
+frontend/dist/
+
 # Editor files
 .vscode/
 .idea/
-*.swp  
+*.swp
 *.log
