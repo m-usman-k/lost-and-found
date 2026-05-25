@@ -6,7 +6,8 @@ package-lock.json
 .env
 
 # Lab submission Word file (regenerate with python docs/build_submission.py)
-docs/*.docx
+docs/
+*.docx
 .claude/
 
 images/
